@@ -6,10 +6,15 @@ export const ChatWidget = ({ groupId }) => {
   const { chatMessages, addChatMessage, currentUser } = useApp();
   const [inputText, setInputText] = useState('');
   const [isAiTyping, setIsAiTyping] = useState(false);
-  const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTo({
+        top: messagesContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
   };
 
   useEffect(() => {
@@ -74,7 +79,9 @@ export const ChatWidget = ({ groupId }) => {
       </div>
 
       {/* Messages Area */}
-      <div style={{
+      <div 
+        ref={messagesContainerRef}
+        style={{
         flex: 1,
         padding: '1rem',
         overflowY: 'auto',
@@ -151,7 +158,6 @@ export const ChatWidget = ({ groupId }) => {
             </div>
           </div>
         )}
-        <div ref={messagesEndRef} />
       </div>
 
       {/* Input Area */}
