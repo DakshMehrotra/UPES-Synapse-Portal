@@ -8,7 +8,9 @@ import {
   ShieldCheck, 
   Sliders,
   Sparkles,
-  Plus
+  Plus,
+  Printer,
+  Users
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { Modal } from '../components/common/Modal';
@@ -34,6 +36,16 @@ export const EvaluationHub = () => {
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [newDelivTitle, setNewDelivTitle] = useState('');
   const [newDelivType, setNewDelivType] = useState('pdf');
+
+  const { students, submitPeerReview, peerReviews } = useApp();
+  const groupStudents = students.filter(s => activeGroup?.members.includes(s.id) && s.id !== currentUser.profile?.id);
+  
+  const [peerScores, setPeerScores] = useState({});
+  const [peerComments, setPeerComments] = useState({});
+
+  const handleGeneratePdf = () => {
+    window.print();
+  };
 
   const totalScore = Number(scores.techDepth) + Number(scores.literature) + Number(scores.codeQuality) + Number(scores.collaboration) + Number(scores.viva);
 
@@ -148,13 +160,24 @@ export const EvaluationHub = () => {
           </div>
         </div>
 
-        <div style={{ textAlign: 'right' }}>
-          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 700 }}>
-            FINAL PROJECT SCORE
+        <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '1rem' }}>
+          <div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 700 }}>
+              FINAL PROJECT SCORE
+            </div>
+            <div style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--text-primary)', fontFamily: 'var(--font-heading)', lineHeight: 1.1 }}>
+              {totalScore} <span style={{ fontSize: '1.25rem', color: 'var(--text-muted)' }}>/ 100</span>
+            </div>
           </div>
-          <div style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--text-primary)', fontFamily: 'var(--font-heading)', lineHeight: 1.1 }}>
-            {totalScore} <span style={{ fontSize: '1.25rem', color: 'var(--text-muted)' }}>/ 100</span>
-          </div>
+          
+          <button 
+            onClick={handleGeneratePdf}
+            className="btn-upes hide-on-print" 
+            style={{ padding: '0.5rem 1rem', fontSize: '0.8rem', backgroundColor: '#0f172a', borderColor: '#0f172a' }}
+          >
+            <Printer size={16} />
+            Generate Official Report (PDF)
+          </button>
         </div>
       </div>
 
@@ -387,6 +410,70 @@ export const EvaluationHub = () => {
             </span>
           </div>
         </div>
+        
+        {/* Peer Evaluation (Student Only) */}
+        {currentUser.role === 'student' && (
+          <div className="portal-card hide-on-print" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.85rem' }}>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Users size={20} color="var(--upes-purple)" />
+                Intra-Group Peer Review
+              </h3>
+            </div>
+            
+            <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
+              Evaluate your group members confidentially. This helps mentors identify individual contributions.
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              {groupStudents.map(student => {
+                const hasReviewed = peerReviews.some(pr => pr.reviewerId === currentUser.profile?.id && pr.revieweeId === student.id);
+                
+                return (
+                <div key={student.id} style={{ border: '1px solid #e2e8f0', padding: '1rem', borderRadius: '8px', backgroundColor: '#f8fafc' }}>
+                  <div style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: '0.5rem' }}>{student.name}</div>
+                  
+                  {hasReviewed ? (
+                    <div style={{ color: '#10b981', fontSize: '0.8rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <CheckCircle2 size={16} /> Review Submitted Successfully
+                    </div>
+                  ) : (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                      <div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', fontWeight: 600, marginBottom: '0.25rem' }}>
+                          <span>Contribution Score</span>
+                          <span style={{ color: 'var(--upes-purple)' }}>{peerScores[student.id] || 5} / 10</span>
+                        </div>
+                        <input 
+                          type="range" min="1" max="10" 
+                          value={peerScores[student.id] || 5} 
+                          onChange={(e) => setPeerScores(prev => ({...prev, [student.id]: e.target.value}))}
+                          style={{ width: '100%', accentColor: 'var(--upes-purple)' }}
+                        />
+                      </div>
+                      
+                      <textarea 
+                        rows={2}
+                        placeholder="Private feedback..."
+                        value={peerComments[student.id] || ''}
+                        onChange={(e) => setPeerComments(prev => ({...prev, [student.id]: e.target.value}))}
+                        style={{ width: '100%', fontSize: '0.8rem', padding: '0.5rem' }}
+                      />
+                      
+                      <button 
+                        onClick={() => submitPeerReview(student.id, peerScores[student.id] || 5, peerComments[student.id] || '')}
+                        className="btn-upes" style={{ fontSize: '0.75rem', padding: '0.5rem', alignSelf: 'flex-start' }}
+                      >
+                        Submit Confidential Review
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )})}
+            </div>
+          </div>
+        )}
+
       </div>
 
       {/* UPLOAD MODAL */}

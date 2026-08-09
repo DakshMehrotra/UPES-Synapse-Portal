@@ -139,12 +139,61 @@ export const MeetingsAndCirculars = () => {
         <div className="portal-card" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.85rem' }}>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-              Scheduled Mentor Review Sessions
+              Interactive Meeting Scheduler
             </h3>
             <span className="badge-pill badge-success">{meetings.length} Upcoming</span>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          {/* WEEKLY CALENDAR GRID */}
+          <div style={{ backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '1rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+              <span style={{ fontWeight: 700, fontSize: '0.9rem', color: '#1e293b' }}>Nov 9 - Nov 15, 2026</span>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <span style={{ fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}><div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#3b82f6' }}/> Available Slot</span>
+                <span style={{ fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}><div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10b981' }}/> Booked</span>
+              </div>
+            </div>
+            
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px', textAlign: 'center' }}>
+              {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => (
+                <div key={day} style={{ fontSize: '0.75rem', fontWeight: 600, color: '#64748b', paddingBottom: '0.5rem' }}>{day}</div>
+              ))}
+              
+              {/* Mock Calendar Slots */}
+              {Array.from({ length: 14 }).map((_, i) => {
+                const isBooked = i === 1 || i === 8;
+                const isAvailable = i % 2 !== 0 && !isBooked;
+                return (
+                  <div 
+                    key={i}
+                    onClick={() => {
+                      if(isAvailable) {
+                        setNewDate('2026-11-10'); // Mock
+                        setIsBookModalOpen(true);
+                      }
+                    }}
+                    style={{
+                      height: '40px',
+                      backgroundColor: isBooked ? '#d1fae5' : isAvailable ? '#eff6ff' : '#f1f5f9',
+                      border: isBooked ? '1px solid #34d399' : isAvailable ? '1px solid #93c5fd' : '1px dashed #cbd5e1',
+                      borderRadius: '4px',
+                      cursor: isAvailable ? 'pointer' : 'default',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      transition: 'all 0.2s'
+                    }}
+                    title={isBooked ? 'Slot Booked' : isAvailable ? 'Click to Book' : 'Unavailable'}
+                  >
+                    {isBooked && <CheckCircle2 size={14} color="#10b981" />}
+                    {isAvailable && <span style={{ fontSize: '0.65rem', color: '#3b82f6', fontWeight: 600 }}>Book</span>}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
             {meetings.map((mt) => {
               const meetingGroup = groups.find(g => g.id === mt.groupId);
               const meetingStudents = meetingGroup ? students.filter(s => meetingGroup.members.includes(s.id)) : [];

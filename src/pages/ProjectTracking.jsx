@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { Modal } from '../components/common/Modal';
+import { ChatWidget } from '../components/common/ChatWidget';
 
 export const ProjectTracking = () => {
   const { tasks, updateTaskStatus, addTask, gradeTask, currentUser } = useApp();
@@ -94,14 +95,17 @@ export const ProjectTracking = () => {
         </button>
       </div>
 
-      {/* 4-Column Kanban Layout */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(4, minmax(280px, 1fr))',
-        gap: '1.25rem',
-        overflowX: 'auto',
-        paddingBottom: '1rem'
-      }}>
+      {/* Main Layout: Kanban + Chat */}
+      <div style={{ display: 'grid', gridTemplateColumns: '3fr 1fr', gap: '1.25rem', alignItems: 'start' }}>
+        
+        {/* 4-Column Kanban Layout */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, minmax(240px, 1fr))',
+          gap: '1rem',
+          overflowX: 'auto',
+          paddingBottom: '1rem'
+        }}>
         {columns.map((col) => {
           const columnTasks = tasks.filter((t) => t.status === col.id);
           return (
@@ -259,6 +263,12 @@ export const ProjectTracking = () => {
             </div>
           );
         })}
+        </div>
+
+        {/* Activity Feed / Chat Widget */}
+        <div style={{ height: 'calc(100vh - 250px)', position: 'sticky', top: '20px' }}>
+          <ChatWidget groupId="g1" />
+        </div>
       </div>
 
       {/* MOVE TASK STATUS MODAL */}

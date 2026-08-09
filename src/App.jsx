@@ -3,6 +3,7 @@ import { AppProvider, useApp } from './context/AppContext';
 import { Header } from './components/common/Header';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
+import { AdminDashboard } from './pages/AdminDashboard';
 import { GroupFormation } from './pages/GroupFormation';
 import { MentorAllocation } from './pages/MentorAllocation';
 import { ProjectTracking } from './pages/ProjectTracking';
@@ -19,7 +20,7 @@ const PortalMainContent = () => {
   const renderActiveTab = () => {
     switch (activeTab) {
       case 'dashboard':
-        return <Dashboard />;
+        return currentUser?.role === 'admin' ? <AdminDashboard /> : <Dashboard />;
       case 'groups':
         return <GroupFormation />;
       case 'mentors':

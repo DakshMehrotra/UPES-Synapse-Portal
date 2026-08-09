@@ -17,9 +17,12 @@ import {
   Square,
   BookOpen,
   ChevronRight,
-  ArrowUpRight
+  ArrowUpRight,
+  Github,
+  FileCheck
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { GitHubGraph } from '../components/common/GitHubGraph';
 
 export const Dashboard = () => {
   const { 
@@ -144,6 +147,11 @@ export const Dashboard = () => {
                 </div>
               </div>
             </div>
+            
+            <div style={{ marginTop: '4rem' }}>
+              <h3 className="editorial-h2" style={{ marginBottom: '1.5rem' }}>Source Code Validation</h3>
+              <GitHubGraph />
+            </div>
           </div>
 
           {/* Right: Deliverables */}
@@ -151,14 +159,31 @@ export const Dashboard = () => {
              <h3 className="editorial-h2" style={{ marginBottom: '2rem' }}>Deliverables</h3>
              
              <div style={{ borderTop: '2px solid var(--text-main)', paddingTop: '2rem' }}>
-                {sprintTasks.map(task => (
-                  <div key={task.id} onClick={() => handleToggleTask(task.id)} style={{ display: 'flex', gap: '1.25rem', marginBottom: '2rem', cursor: 'pointer', alignItems: 'flex-start', padding: '0.5rem', borderRadius: '8px', transition: 'background-color 0.2s', ':hover': { backgroundColor: 'var(--upes-gray-light)' } }}>
-                    <div style={{ marginTop: '2px', transition: 'transform 0.2s', transform: task.completed ? 'scale(1.1)' : 'scale(1)' }}>
-                      {task.completed ? <CheckSquare size={28} color="var(--text-main)" /> : <Square size={28} color="var(--upes-gray)" />}
+                {sprintTasks.map((task, idx) => (
+                  <div key={task.id} style={{ marginBottom: '2rem' }}>
+                    <div onClick={() => handleToggleTask(task.id)} style={{ display: 'flex', gap: '1.25rem', cursor: 'pointer', alignItems: 'flex-start', padding: '0.5rem', borderRadius: '8px', transition: 'background-color 0.2s', ':hover': { backgroundColor: 'var(--upes-gray-light)' } }}>
+                      <div style={{ marginTop: '2px', transition: 'transform 0.2s', transform: task.completed ? 'scale(1.1)' : 'scale(1)' }}>
+                        {task.completed ? <CheckSquare size={28} color="var(--text-main)" /> : <Square size={28} color="var(--upes-gray)" />}
+                      </div>
+                      <div style={{ fontSize: '1.15rem', fontWeight: 600, color: task.completed ? 'var(--upes-gray)' : 'var(--text-main)', textDecoration: task.completed ? 'line-through' : 'none', lineHeight: 1.4, transition: 'all 0.2s' }}>
+                        {task.text}
+                      </div>
                     </div>
-                    <div style={{ fontSize: '1.15rem', fontWeight: 600, color: task.completed ? 'var(--upes-gray)' : 'var(--text-main)', textDecoration: task.completed ? 'line-through' : 'none', lineHeight: 1.4, transition: 'all 0.2s' }}>
-                      {task.text}
-                    </div>
+                    {/* Mock Turnitin/GitHub integrations for completed deliverables */}
+                    {task.completed && idx === 0 && (
+                      <div style={{ marginLeft: '3.75rem', marginTop: '0.5rem', display: 'flex', gap: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.75rem', fontWeight: 700, color: '#16a34a', backgroundColor: '#f0fdf4', padding: '0.2rem 0.6rem', borderRadius: '4px', border: '1px solid #bbf7d0' }}>
+                          <FileCheck size={14} /> Turnitin: 8% (Safe)
+                        </div>
+                      </div>
+                    )}
+                    {task.completed && idx === 1 && (
+                      <div style={{ marginLeft: '3.75rem', marginTop: '0.5rem', display: 'flex', gap: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.75rem', fontWeight: 700, color: '#2563eb', backgroundColor: '#eff6ff', padding: '0.2rem 0.6rem', borderRadius: '4px', border: '1px solid #bfdbfe' }}>
+                          <Github size={14} /> Synced to Main Branch
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ))}
              </div>

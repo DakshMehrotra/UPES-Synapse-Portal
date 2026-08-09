@@ -280,3 +280,41 @@ button {
 .badge-pill { font-size: 0.75rem; font-weight: bold; padding: 0.25rem 0.5rem; border-radius: 99px; }
 .badge-success { background: #f0fdf4; color: #166534; }
 .badge-warning { background: #fffbeb; color: #b45309; }
+
+/* PRINT STYLES FOR PDF GENERATION */
+@media print {
+  body {
+    background-color: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .hide-on-print {
+    display: none !important;
+  }
+  
+  aside {
+    display: none !important;
+  }
+  
+  header {
+    display: none !important;
+  }
+  
+  footer {
+    display: none !important;
+  }
+  
+  .portal-card {
+    border: 1px solid #000;
+    box-shadow: none !important;
+    break-inside: avoid;
+    margin-bottom: 2rem;
+  }
+  
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+}

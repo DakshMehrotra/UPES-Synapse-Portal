@@ -125,6 +125,13 @@ export const AppProvider = ({ children }) => {
     { id: 3, text: 'AI Mentor Matchmaker is now available in portal', time: '2d ago', unread: false }
   ]);
 
+  const [chatMessages, setChatMessages] = useState(savedState?.chatMessages || [
+    { id: 'c1', groupId: 'g1', sender: 'Dr. Tanupriya Choudhury', text: 'Please ensure your database schema is normalized before the next meeting.', timestamp: '10:30 AM', isMentor: true },
+    { id: 'c2', groupId: 'g1', sender: 'Daksh Mehrotra', text: 'Will do, ma\'am. We are finalizing the ER diagram today.', timestamp: '10:45 AM', isMentor: false }
+  ]);
+
+  const [peerReviews, setPeerReviews] = useState(savedState?.peerReviews || []);
+
   const [toastMessage, setToastMessage] = useState(null);
 
   useEffect(() => {
@@ -141,13 +148,15 @@ export const AppProvider = ({ children }) => {
           notices,
           meetings,
           deliverables,
-          evalScores
+          evalScores,
+          chatMessages,
+          peerReviews
         })
       );
     } catch (e) {
       console.error('Error saving to localStorage:', e);
     }
-  }, [isLoggedIn, currentUser, students, mentors, groups, tasks, notices, meetings, deliverables, evalScores]);
+  }, [isLoggedIn, currentUser, students, mentors, groups, tasks, notices, meetings, deliverables, evalScores, chatMessages, peerReviews]);
 
   const triggerToast = (text) => {
     setToastMessage(text);
@@ -554,6 +563,31 @@ export const AppProvider = ({ children }) => {
     setNotifications((prev) => prev.map((n) => ({ ...n, unread: false })));
   };
 
+  const addChatMessage = (groupId, text) => {
+    const newMsg = {
+      id: `c_${Date.now()}`,
+      groupId,
+      sender: currentUser.profile?.name,
+      text,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      isMentor: currentUser.role === 'mentor' || currentUser.role === 'admin'
+    };
+    setChatMessages(prev => [...prev, newMsg]);
+  };
+
+  const submitPeerReview = (revieweeId, score, comment) => {
+    const newReview = {
+      id: `pr_${Date.now()}`,
+      reviewerId: currentUser.profile?.id,
+      revieweeId,
+      score: Number(score),
+      comment,
+      date: new Date().toLocaleDateString('en-GB')
+    };
+    setPeerReviews(prev => [...prev, newReview]);
+    triggerToast('Peer review submitted securely.');
+  };
+
   // Reset demo data to initial state
   const resetDemoData = () => {
     localStorage.removeItem(LOCAL_STORAGE_KEY);
@@ -564,6 +598,11 @@ export const AppProvider = ({ children }) => {
     setNotices(INITIAL_NOTICES);
     setMeetings(INITIAL_MEETINGS);
     setDeliverables(INITIAL_DELIVERABLES);
+    setChatMessages([
+      { id: 'c1', groupId: 'g1', sender: 'Dr. Tanupriya Choudhury', text: 'Please ensure your database schema is normalized before the next meeting.', timestamp: '10:30 AM', isMentor: true },
+      { id: 'c2', groupId: 'g1', sender: 'Daksh Mehrotra', text: 'Will do, ma\'am. We are finalizing the ER diagram today.', timestamp: '10:45 AM', isMentor: false }
+    ]);
+    setPeerReviews([]);
     setEvalScores({
       techDepth: 19,
       literature: 18,
@@ -600,6 +639,8 @@ export const AppProvider = ({ children }) => {
         deliverables,
         evalScores,
         notifications,
+        chatMessages,
+        peerReviews,
         loginAsRole,
         createGroup,
         inviteMemberToGroup,
@@ -619,6 +660,8 @@ export const AppProvider = ({ children }) => {
         updateGroupScore,
         addDeliverable,
         markAllNotificationsRead,
+        addChatMessage,
+        submitPeerReview,
         resetDemoData,
       }}
     >
