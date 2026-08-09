@@ -18,7 +18,7 @@ import {
   BookOpen,
   ChevronRight,
   ArrowUpRight,
-  Github,
+  GitBranch,
   FileCheck
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
@@ -180,7 +180,7 @@ export const Dashboard = () => {
                     {task.completed && idx === 1 && (
                       <div style={{ marginLeft: '3.75rem', marginTop: '0.5rem', display: 'flex', gap: '1rem' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.75rem', fontWeight: 700, color: '#2563eb', backgroundColor: '#eff6ff', padding: '0.2rem 0.6rem', borderRadius: '4px', border: '1px solid #bfdbfe' }}>
-                          <Github size={14} /> Synced to Main Branch
+                          <GitBranch size={14} /> Synced to Main Branch
                         </div>
                       </div>
                     )}
