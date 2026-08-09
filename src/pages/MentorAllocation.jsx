@@ -84,36 +84,40 @@ export const MentorAllocation = () => {
   return (
     <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
       
-      {/* 1. TOP AI ABSTRACT MATCHMAKER ENGINE (Standout WOW Feature) */}
+      {/* 
+        1. TOP ABSTRACT ANALYZER ENGINE (Developer-Style)
+        This section allows students to paste their project abstract.
+        It calculates a semantic keyword match against the faculty's research domains.
+      */}
       <div 
         className="portal-card" 
         style={{
-          background: 'linear-gradient(145deg, #0f172a 0%, #1e1b4b 100%)',
-          color: 'white',
-          border: '1px solid rgba(255, 255, 255, 0.12)',
-          boxShadow: '0 10px 25px -5px rgba(15, 23, 42, 0.15)'
+          backgroundColor: '#ffffff',
+          color: 'var(--text-primary)',
+          border: '1px solid var(--border-color)',
+          boxShadow: 'var(--shadow-sm)'
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div style={{
-              backgroundColor: '#2563eb',
-              color: '#ffffff',
+              backgroundColor: '#f1f5f9',
+              color: '#334155',
               padding: '0.65rem',
               borderRadius: '8px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 2px 8px rgba(37,99,235,0.25)'
+              border: '1px solid #e2e8f0'
             }}>
-              <Sparkles size={22} />
+              <Search size={22} />
             </div>
             <div>
-              <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'white' }}>
-                AI Research Domain Matchmaker
+              <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#0f172a' }}>
+                Semantic Research Domain Analyzer
               </h2>
-              <p style={{ fontSize: '0.85rem', color: '#94a3b8' }}>
-                Paste or edit your project abstract to compute instant semantic research domain compatibility % with UPES faculty mentors.
+              <p style={{ fontSize: '0.85rem', color: '#64748b' }}>
+                Paste or edit your project abstract to compute keyword compatibility and research alignment with SoCS faculty mentors.
               </p>
             </div>
           </div>
@@ -137,7 +141,7 @@ export const MentorAllocation = () => {
 
         {/* Abstract Input Textarea */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-          <label style={{ fontSize: '0.78rem', fontWeight: 700, color: 'rgba(255,255,255,0.85)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+          <label style={{ fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
             PROJECT ABSTRACT & DOMAIN KEYWORDS
           </label>
           <textarea
@@ -146,16 +150,16 @@ export const MentorAllocation = () => {
             onChange={(e) => setAbstractText(e.target.value)}
             placeholder="Describe your project (e.g., AI/ML, React portal, blockchain security, cloud microservices...)"
             style={{
-              backgroundColor: 'rgba(255,255,255,0.1)',
-              border: '1px solid rgba(255,255,255,0.25)',
-              color: 'white',
-              borderRadius: '8px',
+              backgroundColor: '#f8fafc',
+              border: '1px solid #cbd5e1',
+              color: '#0f172a',
+              borderRadius: '6px',
               padding: '0.85rem',
               fontSize: '0.9rem',
               fontFamily: 'var(--font-primary)'
             }}
           />
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', color: 'rgba(255,255,255,0.6)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.75rem', color: '#64748b' }}>
             <span>Analyzes keywords: AI, Cloud, React, Blockchain, Security, DevOps, UI/UX...</span>
             <span>Live semantic ranking enabled</span>
           </div>
@@ -227,7 +231,11 @@ export const MentorAllocation = () => {
         </div>
       )}
 
-      {/* 3. FACULTY MENTORS DIRECTORY & MATCH SCORES */}
+      {/* 
+        3. FACULTY MENTORS DIRECTORY & MATCH SCORES 
+        Displays all mentors sorted by their semantic relevance score.
+        Includes a search filter and visually highlights the top recommended mentor.
+      */}
       <div className="portal-card">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
           <div>
@@ -235,7 +243,7 @@ export const MentorAllocation = () => {
               SoCS Faculty Mentor Catalog & Quota Tracking
             </h3>
             <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
-              Standardized mentor allocation replaces informal verbal communication. Mentors are sorted by AI abstract compatibility score.
+              Standardized mentor allocation replaces informal verbal communication. Mentors are sorted by semantic abstract compatibility score.
             </p>
           </div>
 
@@ -281,19 +289,19 @@ export const MentorAllocation = () => {
                       position: 'absolute',
                       top: '-12px',
                       right: '16px',
-                      background: 'linear-gradient(135deg, #00d2ff, #7d2ae8)',
+                      backgroundColor: '#3b82f6',
                       color: 'white',
                       fontSize: '0.68rem',
-                      fontWeight: 800,
+                      fontWeight: 700,
                       padding: '0.2rem 0.65rem',
                       borderRadius: '99px',
                       display: 'flex',
                       alignItems: 'center',
                       gap: '0.35rem',
-                      boxShadow: '0 4px 10px rgba(0, 210, 255, 0.4)'
+                      boxShadow: '0 2px 4px rgba(59, 130, 246, 0.3)'
                     }}>
-                      <Sparkles size={12} />
-                      <span>AI RECOMMENDED ({mentor.matchScore}% MATCH)</span>
+                      <Search size={12} />
+                      <span>TOP MATCH ({mentor.matchScore}%)</span>
                     </div>
                   )}
 
@@ -331,16 +339,16 @@ export const MentorAllocation = () => {
                       </div>
                     </div>
 
-                    {/* AI Match Score Badge */}
+                    {/* Semantic Match Score Badge */}
                     <div style={{
                       textAlign: 'center',
-                      backgroundColor: '#ede9fe',
+                      backgroundColor: '#f1f5f9',
                       padding: '0.35rem 0.65rem',
                       borderRadius: '8px',
-                      border: '1px solid rgba(109, 40, 217, 0.2)'
+                      border: '1px solid #e2e8f0'
                     }}>
-                      <div style={{ fontSize: '0.65rem', color: '#6d28d9', fontWeight: 700 }}>AI MATCH</div>
-                      <div style={{ fontSize: '1.1rem', fontWeight: 900, color: '#4f269f', fontFamily: 'var(--font-heading)' }}>
+                      <div style={{ fontSize: '0.65rem', color: '#475569', fontWeight: 700 }}>RELEVANCE</div>
+                      <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0f172a' }}>
                         {mentor.matchScore}%
                       </div>
                     </div>
