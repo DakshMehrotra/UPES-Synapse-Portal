@@ -1,102 +1,113 @@
 <div align="center">
-  
   <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?q=80&w=1000&auto=format&fit=crop" alt="Synapse Portal Banner" width="100%" style="border-radius: 12px; margin-bottom: 20px;" />
 
-  # Synapse: UPES Major Project Portal
-
-  **The ultimate, AI-driven capstone management system for the School of Computer Science (SoCS).**
+  # SYNAPSE: ENTERPRISE CAPSTONE PORTAL
   
+  **The definitive, production-grade project management system for the School of Computer Science (SoCS).**
+
   [![React](https://img.shields.io/badge/React-18.x-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
   [![Vite](https://img.shields.io/badge/Vite-5.x-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-  [![Status](https://img.shields.io/badge/Status-Production_Ready-10B981?style=for-the-badge&logo=checkmarx&logoColor=white)]()
-
-  *Goodbye spreadsheet chaos. Hello seamless, structured, and auditable academic workflows.*
-
+  [![Status](https://img.shields.io/badge/Status-Enterprise_Ready-10B981?style=for-the-badge&logo=checkmarx&logoColor=white)]()
+  
+  *Engineered for scale. Built for academics. Designed for excellence.*
 </div>
 
 ---
 
-## Why Synapse?
+## ARCHITECTURE OVERVIEW
 
-For years, university capstone project allocations involved messy group chats, lost emails, and informal verbal approvals. **Synapse** revolutionizes this by introducing an enterprise-grade portal featuring an **AI Mentor Matchmaker**, standardized **Kanban tracking**, and **5-parameter interactive rubrics**.
+Synapse is not just a student portal; it is a comprehensive, multi-tenant enterprise system designed to eliminate spreadsheet chaos and bring highly structured, auditable workflows to university capstone projects. 
 
-### Key Features
-
-- **AI Mentor Matchmaker:** Automatically calculates compatibility scores (0-100%) between student abstracts and faculty research domains using keyword algorithms.
-- **Agile Kanban Milestones:** Students track deliverables from synopsis to end-term defense in a beautiful, glassmorphic Kanban board.
-- **Role-Based Access Control (RBAC):** Strictly isolated interfaces for **Students**, **Faculty Mentors**, and **Project Cell Coordinators**.
-- **5-Parameter Interactive Rubrics:** Faculty can evaluate technical depth, literature review, and code quality using interactive grading sliders.
-- **Microsoft SSO Integration (Mocked):** Secure institutional login simulating the `@stu.upes.ac.in` and `@ddn.upes.ac.in` authentication flow.
+By integrating automated mentor matchmaking, real-time GitHub tracking, and standardized Rubric evaluation, Synapse sets a new standard for academic infrastructure.
 
 ---
 
-## The Aesthetic: "Crazy AF"
+## CORE ENTERPRISE FEATURES
 
-Synapse isn't just functional; it's a visual masterpiece. We engineered the UI using:
-- **Immersive Glassmorphism:** Translucent panels, deep blur filters, and glowing borders.
-- **Dynamic Mesh Gradients:** Subtle, animated backgrounds that give the portal life.
-- **Premium Micro-interactions:** Everything from the login button's loading state to the hover elevation on task cards feels tactile and high-end.
+### 1. Advanced Analytics & Admin Dashboard
+A dedicated command center for Project Cell Coordinators. Features a global view of student group formations, mentor utilization heatmaps, and dynamic grading curves. Identifies bottlenecks in mentor allocations instantly.
+
+### 2. GitHub & Turnitin Integrations
+Directly integrates into the student workflow. Dashboards feature a 15-week GitHub contribution graph (identical to native GitHub aesthetics) and Turnitin Plagiarism validation badges for every milestone deliverable.
+
+### 3. Real-Time Chat & Activity Feed
+Embedded directly within the Agile Kanban board. Mentors and students can communicate contextually without ever leaving the tracking portal. Mentor messages are officially verified with administrative badges.
+
+### 4. Interactive Meeting Scheduler
+A standardized calendar grid replacing informal scheduling. Students can view available faculty slots in real-time and book presentation defenses with a single click, instantly logging the request for mentor approval.
+
+### 5. Intra-Group Peer Evaluation
+Confidential peer review system integrated into the Evaluation Hub. Students can confidentially score their teammates' contributions using sliders and private text feedback, ensuring transparent and fair individual grading.
+
+### 6. One-Click PDF Report Generation
+Seamless transition from digital portal to physical documentation. A highly engineered CSS print layout strips away navigation and UI elements, instantly formatting the 5-Parameter Rubric evaluations into a crisp, official A4 university document.
+
+### 7. AI Mentor Matchmaker
+Automatically calculates compatibility scores (0-100%) between student abstracts and faculty research domains using optimized keyword algorithms.
 
 ---
 
-## Quick Start Guide
+## ROLE-BASED ACCESS CONTROL (RBAC)
 
-Want to run this beast locally? It takes less than 60 seconds.
+The system strictly isolates interfaces and capabilities based on authentication tiers:
+
+- **Student Access:** Kanban tracking, deliverable submissions, peer reviews, and meeting requests.
+- **Faculty Access:** Interactive rubric grading, attendance tracking, chat moderation, and defense approvals.
+- **Admin/Coordinator Access:** System-wide analytics, global user management, and official circular broadcasting.
+
+---
+
+## QUICK START DEPLOYMENT
+
+Get the environment running locally in under 60 seconds.
 
 ### Prerequisites
-Make sure you have [Node.js](https://nodejs.org/) (v16+) installed.
+Ensure Node.js (v18 or higher) is installed on your system.
 
-### Installation
+### Initialization
 
 ```bash
-# 1. Clone the repository
+# Clone the repository
 git clone https://github.com/DakshMehrotra/UPES-Synapse-Portal.git
 
-# 2. Navigate into the directory
+# Navigate into the workspace
 cd UPES-Synapse-Portal
 
-# 3. Install dependencies
+# Install dependencies
 npm install
 
-# 4. Start the Vite development server
+# Initialize the Vite development server
 npm run dev
 ```
 
-> **Note:** The app will typically be available at `http://localhost:5173`.
+The portal will be accessible immediately at `http://localhost:5173`.
 
 ---
 
-## Demo Login Credentials
+## AUTHENTICATION DIRECTORY
 
-The portal is pre-loaded with an extensive UPES database. Use the built-in role selector on the beautiful new Login screen, or use these credentials:
+The system is pre-populated with a comprehensive mocked database simulating the `@stu.upes.ac.in` Microsoft SSO architecture. Use the provided login portal UI or reference the standard credentials below:
 
-| Role | Email | Password |
+| Access Tier | Email ID | Password |
 | :--- | :--- | :--- |
-| **Student** | `Daksh.125960@stu.upes.ac.in` | `............` (Anything works) |
-| **Faculty Mentor** | `tanupriya.c@ddn.upes.ac.in` | `............` (Anything works) |
-| **Coordinator (Admin)**| `projectcell.socs@ddn.upes.ac.in`| `............` (Anything works) |
+| **Student** | `Daksh.125960@stu.upes.ac.in` | `[Any Password]` |
+| **Faculty Mentor** | `tanupriya.c@ddn.upes.ac.in` | `[Any Password]` |
+| **System Admin** | `projectcell.socs@ddn.upes.ac.in` | `[Any Password]` |
 
 ---
 
-## Architecture & Tech Stack
+## TECHNICAL FOUNDATION
 
-- **Frontend Framework:** React 18
-- **Build Tool:** Vite
-- **Styling:** Vanilla CSS3 + CSS Variables (Custom Design System)
-- **Icons:** Lucide React
-- **Routing:** React Router DOM (Mocked via State for demo)
-- **State Management:** React Context API (`AppContext.jsx`)
-
----
-
-## License
-
-This project is intended for demonstration purposes as part of the UPES Major Project Cell initiative. 
+- **Framework:** React 18
+- **Build Engine:** Vite
+- **Styling Architecture:** Vanilla CSS3 + Global Design Tokens
+- **Iconography:** Lucide React
+- **State Management:** React Context API
+- **Version Control:** Git / GitHub
 
 ---
 
 <div align="center">
-  <b>Built with passion for UPES SoCS</b><br>
+  <b>Engineered with precision for UPES SoCS</b><br>
   <i>"University of Tomorrow"</i>
 </div>
