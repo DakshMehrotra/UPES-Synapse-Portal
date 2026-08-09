@@ -11,7 +11,7 @@ import { EvaluationHub } from './pages/EvaluationHub';
 import { MeetingsAndCirculars } from './pages/MeetingsAndCirculars';
 
 const PortalMainContent = () => {
-  const { isLoggedIn, login, logout, activeTab, setActiveTab } = useApp();
+  const { isLoggedIn, login, logout, activeTab, setActiveTab, currentUser } = useApp();
 
   if (!isLoggedIn) {
     return <Login onLoginSuccess={login} />;
