@@ -2,7 +2,7 @@
   
   <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?q=80&w=1000&auto=format&fit=crop" alt="Synapse Portal Banner" width="100%" style="border-radius: 12px; margin-bottom: 20px;" />
 
-  # 🚀 Synapse: UPES Major Project Portal
+  # Synapse: UPES Major Project Portal
 
   **The ultimate, AI-driven capstone management system for the School of Computer Science (SoCS).**
   
@@ -17,21 +17,21 @@
 
 ---
 
-## ⚡ Why Synapse?
+## Why Synapse?
 
 For years, university capstone project allocations involved messy group chats, lost emails, and informal verbal approvals. **Synapse** revolutionizes this by introducing an enterprise-grade portal featuring an **AI Mentor Matchmaker**, standardized **Kanban tracking**, and **5-parameter interactive rubrics**.
 
-### 🔥 Key Features
+### Key Features
 
-- **🤖 AI Mentor Matchmaker:** Automatically calculates compatibility scores (0-100%) between student abstracts and faculty research domains using keyword algorithms.
-- **📊 Agile Kanban Milestones:** Students track deliverables from synopsis to end-term defense in a beautiful, glassmorphic Kanban board.
-- **🎓 Role-Based Access Control (RBAC):** Strictly isolated interfaces for **Students**, **Faculty Mentors**, and **Project Cell Coordinators**.
-- **📈 5-Parameter Interactive Rubrics:** Faculty can evaluate technical depth, literature review, and code quality using interactive grading sliders.
-- **🔐 Microsoft SSO Integration (Mocked):** Secure institutional login simulating the `@stu.upes.ac.in` and `@ddn.upes.ac.in` authentication flow.
+- **AI Mentor Matchmaker:** Automatically calculates compatibility scores (0-100%) between student abstracts and faculty research domains using keyword algorithms.
+- **Agile Kanban Milestones:** Students track deliverables from synopsis to end-term defense in a beautiful, glassmorphic Kanban board.
+- **Role-Based Access Control (RBAC):** Strictly isolated interfaces for **Students**, **Faculty Mentors**, and **Project Cell Coordinators**.
+- **5-Parameter Interactive Rubrics:** Faculty can evaluate technical depth, literature review, and code quality using interactive grading sliders.
+- **Microsoft SSO Integration (Mocked):** Secure institutional login simulating the `@stu.upes.ac.in` and `@ddn.upes.ac.in` authentication flow.
 
 ---
 
-## 🎨 The Aesthetic: "Crazy AF"
+## The Aesthetic: "Crazy AF"
 
 Synapse isn't just functional; it's a visual masterpiece. We engineered the UI using:
 - **Immersive Glassmorphism:** Translucent panels, deep blur filters, and glowing borders.
@@ -40,7 +40,7 @@ Synapse isn't just functional; it's a visual masterpiece. We engineered the UI u
 
 ---
 
-## 🚀 Quick Start Guide
+## Quick Start Guide
 
 Want to run this beast locally? It takes less than 60 seconds.
 
@@ -51,10 +51,10 @@ Make sure you have [Node.js](https://nodejs.org/) (v16+) installed.
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/upes-synapse-portal.git
+git clone https://github.com/DakshMehrotra/UPES-Synapse-Portal.git
 
 # 2. Navigate into the directory
-cd upes-synapse-portal
+cd UPES-Synapse-Portal
 
 # 3. Install dependencies
 npm install
@@ -67,19 +67,19 @@ npm run dev
 
 ---
 
-## 👥 Demo Login Credentials
+## Demo Login Credentials
 
 The portal is pre-loaded with an extensive UPES database. Use the built-in role selector on the beautiful new Login screen, or use these credentials:
 
 | Role | Email | Password |
 | :--- | :--- | :--- |
-| **Student** | `Daksh.125960@stu.upes.ac.in` | `••••••••••••` (Anything works) |
-| **Faculty Mentor** | `tanupriya.c@ddn.upes.ac.in` | `••••••••••••` (Anything works) |
-| **Coordinator (Admin)**| `projectcell.socs@ddn.upes.ac.in`| `••••••••••••` (Anything works) |
+| **Student** | `Daksh.125960@stu.upes.ac.in` | `............` (Anything works) |
+| **Faculty Mentor** | `tanupriya.c@ddn.upes.ac.in` | `............` (Anything works) |
+| **Coordinator (Admin)**| `projectcell.socs@ddn.upes.ac.in`| `............` (Anything works) |
 
 ---
 
-## 🛠️ Architecture & Tech Stack
+## Architecture & Tech Stack
 
 - **Frontend Framework:** React 18
 - **Build Tool:** Vite
@@ -90,13 +90,13 @@ The portal is pre-loaded with an extensive UPES database. Use the built-in role 
 
 ---
 
-## 🛡️ License
+## License
 
 This project is intended for demonstration purposes as part of the UPES Major Project Cell initiative. 
 
 ---
 
 <div align="center">
-  <b>Built with ❤️ for UPES SoCS</b><br>
+  <b>Built with passion for UPES SoCS</b><br>
   <i>"University of Tomorrow"</i>
 </div>
