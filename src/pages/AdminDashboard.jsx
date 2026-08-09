@@ -36,11 +36,18 @@ export const AdminDashboard = () => {
     <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
       
       {/* Header */}
-      <div>
-        <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)' }}>
+      <div style={{ 
+        padding: '2rem', 
+        borderRadius: '16px', 
+        background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)',
+        color: 'white',
+        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)'
+      }}>
+        <h2 style={{ fontSize: '1.75rem', fontWeight: 800, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <Activity size={28} color="#00d2ff" />
           Project Cell Analytics
         </h2>
-        <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+        <p style={{ fontSize: '0.95rem', color: '#94a3b8' }}>
           Global overview of batch progress, mentor utilization, and academic health.
         </p>
       </div>
@@ -105,7 +112,7 @@ export const AdminDashboard = () => {
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0f172a' }}>Semester Grading Distribution</h3>
             <span style={{ fontSize: '0.75rem', backgroundColor: '#f1f5f9', padding: '0.2rem 0.5rem', borderRadius: '4px', fontWeight: 600 }}>Mid-Term Eval</span>
           </div>
-          <div style={{ height: '220px', display: 'flex', alignItems: 'flex-end', gap: '1rem', paddingBottom: '1rem', borderBottom: '1px solid #e2e8f0' }}>
+          <div style={{ height: '260px', display: 'flex', alignItems: 'flex-end', gap: '1.5rem', paddingBottom: '1rem', borderBottom: '1px solid #e2e8f0', marginTop: '1rem' }}>
             {/* Simple CSS Bar Chart Mock */}
             {[
               { grade: '< 60', count: 5 },
@@ -117,16 +124,17 @@ export const AdminDashboard = () => {
               const maxCount = 85;
               const height = (bar.count / maxCount) * 100;
               return (
-                <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
-                  <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#64748b' }}>{bar.count}</div>
+                <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', height: '100%', gap: '0.5rem' }}>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#334155' }}>{bar.count}</div>
                   <div style={{ 
                     width: '100%', 
                     height: `${height}%`, 
-                    backgroundColor: i === 3 ? '#3b82f6' : '#cbd5e1',
-                    borderRadius: '4px 4px 0 0',
-                    transition: 'height 0.5s ease'
+                    background: i === 3 ? 'linear-gradient(180deg, #3b82f6 0%, #2563eb 100%)' : 'linear-gradient(180deg, #cbd5e1 0%, #94a3b8 100%)',
+                    borderRadius: '6px 6px 0 0',
+                    transition: 'height 1s cubic-bezier(0.16, 1, 0.3, 1)',
+                    boxShadow: i === 3 ? '0 4px 15px -3px rgba(59, 130, 246, 0.5)' : 'none'
                   }} />
-                  <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#475569' }}>{bar.grade}</div>
+                  <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#64748b' }}>{bar.grade}</div>
                 </div>
               );
             })}
